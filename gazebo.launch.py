@@ -53,13 +53,7 @@ def generate_launch_description():
         package='controller_manager',
         executable='spawner',
         output='screen',
-        arguments=[
-            'diff_drive_controller',
-            '--controller-manager',
-            '/controller_manager',
-            '--param-file',
-            controllers_file,
-        ],
+        arguments=['diff_drive_controller', '--controller-manager', '/controller_manager'],
         condition=IfCondition(use_ros2_control),
     )
 
