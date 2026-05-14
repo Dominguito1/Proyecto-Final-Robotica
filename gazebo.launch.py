@@ -17,6 +17,8 @@ def generate_launch_description():
         robot_xacro,
         ' use_ros2_control:=',
         use_ros2_control,
+        ' controllers_file:=',
+        controllers_file,
     ])
 
     robot_state_publisher = Node(
