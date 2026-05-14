@@ -1,19 +1,16 @@
-import os
-
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution, ThisLaunchFileDir
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
     use_ros2_control = LaunchConfiguration('use_ros2_control')
-    this_dir = os.path.dirname(os.path.abspath(__file__))
-    robot_xacro = os.path.join(this_dir, 'robot.urdf.xacro')
-    controllers_file = os.path.join(this_dir, 'controllers.yaml')
+    robot_xacro = PathJoinSubstitution([ThisLaunchFileDir(), 'robot.urdf.xacro'])
+    controllers_file = PathJoinSubstitution([ThisLaunchFileDir(), 'controllers.yaml'])
 
     robot_description = Command([
         'xacro ',
